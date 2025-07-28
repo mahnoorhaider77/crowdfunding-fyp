@@ -15,6 +15,13 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To open a page open http://localhost:3000/login(or any page name) in ur browser
+Remember to install npm in project folder so u get node_modules folder
+
+Make sure your folder structure looks like this:
+<img width="179" height="640" alt="image" src="https://github.com/user-attachments/assets/23da3546-05ed-4c6e-ba54-e413becf045f" />
+<img width="194" height="617" alt="image" src="https://github.com/user-attachments/assets/ac352c3a-e596-4f01-a854-2b81ac658a41" />
+
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
