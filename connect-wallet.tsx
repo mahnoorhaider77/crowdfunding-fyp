@@ -9,9 +9,15 @@ export default function ConnectWalletPage() {
   const { publicKey } = useWallet();
   const [walletAddress, setWalletAddress] = useState('');
   const [redirected, setRedirected] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // ✅ For hydration fix
   const router = useRouter();
 
-  // ✅ When wallet connects, save it and redirect to /kyc
+  // ✅ Prevent hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // ✅ Redirect if wallet connects
   useEffect(() => {
     if (publicKey && !redirected) {
       const address = publicKey.toBase58();
@@ -22,27 +28,33 @@ export default function ConnectWalletPage() {
     }
   }, [publicKey, redirected, router]);
 
+  // ❗ Render nothing until mounted to avoid SSR mismatch
+  if (!isMounted) return null;
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200 p-4">
-      <div className="bg-white/40 backdrop-blur-md p-10 rounded-2xl shadow-xl max-w-md w-full text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Connect Your Wallet</h2>
-        <p className="text-gray-600 mb-6">
-          You can connect your Phantom wallet now or skip this step.
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B0F2D] to-[#1A1F4A] p-4">
+      <div className="bg-white/10 backdrop-blur-lg border border-white/10 shadow-xl rounded-2xl p-10 max-w-md w-full text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">Connect Your Wallet</h2>
+        <p className="text-gray-400 mb-6">
+          Connect your Phantom wallet to start investing, or skip for now.
         </p>
 
-        <div className="mb-4">
-          <WalletMultiButton className="w-full !justify-center !rounded-xl !bg-purple-600 hover:!bg-purple-700 !text-white !font-semibold" />
+        {/* Wallet Connect Button */}
+        <div className="mb-4 flex justify-center">
+          <WalletMultiButton className="!rounded-xl !px-6 !py-3 !bg-gradient-to-r !from-purple-500 !to-blue-500 !text-white !font-semibold hover:!from-purple-600 hover:!to-blue-600 transition !shadow-lg !hover:shadow-purple-500/30" />
         </div>
 
+        {/* Show connected wallet */}
         {walletAddress && (
-          <p className="text-sm text-gray-700 mt-2">
-            Connected wallet: <span className="font-mono">{walletAddress}</span>
+          <p className="text-sm text-purple-300 mt-3 font-mono break-all">
+            Connected wallet: {walletAddress}
           </p>
         )}
 
+        {/* Skip Button */}
         <button
           onClick={() => router.push('/kyc')}
-          className="mt-6 w-full py-2 font-semibold text-white rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 shadow-md transition"
+          className="mt-6 w-full py-3 font-semibold text-white rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 shadow-lg hover:shadow-purple-500/30 transition"
         >
           Skip for Now
         </button>
