@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Rocket, ImagePlus, Coins } from 'lucide-react';
 
 const CreateCampaign = () => {
   const router = useRouter();
@@ -13,62 +14,96 @@ const CreateCampaign = () => {
     imageUrl: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Campaign Data:', form);
-    router.push('/dashboard'); // Redirect to dashboard
+    router.push('/creator-dashboard'); // Redirect to dashboard after creation
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e0e7ff] to-[#f3f4f6] px-4 py-12">
-      <div className="bg-white/30 backdrop-blur-md shadow-xl rounded-2xl p-10 w-full max-w-2xl">
-        <h1 className="text-3xl font-bold text-indigo-700 mb-6 text-center">Create a New Campaign</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B0F2D] to-[#1A1F4A] px-4 py-12">
+      <div className="bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-10 w-full max-w-2xl text-white">
+        <div className="flex items-center justify-center mb-6 gap-2">
+          <Rocket className="w-8 h-8 text-purple-400" />
+          <h1 className="text-3xl font-bold">Create a New Campaign</h1>
+        </div>
+        <p className="text-gray-400 text-center mb-8">
+          Launch your project and start raising funds on Solana
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Campaign Title */}
           <input
             type="text"
             name="title"
             placeholder="Campaign Title"
             value={form.title}
             onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-xl bg-white/60 backdrop-blur-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 
+                       border border-white/20 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/50
+                       outline-none transition"
             required
           />
+
+          {/* Description */}
           <textarea
             name="description"
-            placeholder="Description"
+            placeholder="Project Description"
             value={form.description}
             onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-xl bg-white/60 backdrop-blur-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
             rows={5}
+            className="w-full p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 
+                       border border-white/20 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/50
+                       outline-none transition"
             required
           />
-          <input
-            type="number"
-            name="goal"
-            placeholder="Goal (SOL)"
-            value={form.goal}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-xl bg-white/60 backdrop-blur-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            required
-          />
-          <input
-            type="url"
-            name="imageUrl"
-            placeholder="Image URL (optional)"
-            value={form.imageUrl}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-xl bg-white/60 backdrop-blur-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          />
+
+          {/* Goal */}
+          <div className="flex items-center gap-3">
+            <Coins className="w-5 h-5 text-yellow-400" />
+            <input
+              type="number"
+              name="goal"
+              placeholder="Funding Goal (SOL)"
+              value={form.goal}
+              onChange={handleChange}
+              className="flex-1 p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 
+                         border border-white/20 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/50
+                         outline-none transition"
+              required
+            />
+          </div>
+
+          {/* Image URL */}
+          <div className="flex items-center gap-3">
+            <ImagePlus className="w-5 h-5 text-pink-400" />
+            <input
+              type="url"
+              name="imageUrl"
+              placeholder="Campaign Image URL (Optional)"
+              value={form.imageUrl}
+              onChange={handleChange}
+              className="flex-1 p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 
+                         border border-white/20 focus:border-purple-400 focus:ring-2 focus:ring-purple-500/50
+                         outline-none transition"
+            />
+          </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 font-semibold py-3 px-4 rounded-xl shadow-lg transition duration-300"
+            className="w-full py-3 font-semibold text-white rounded-xl 
+                       bg-gradient-to-r from-purple-500 to-blue-500
+                       hover:from-purple-600 hover:to-blue-600
+                       shadow-lg hover:shadow-purple-500/30 transition"
           >
-            Submit Campaign
+            🚀 Launch Campaign
           </button>
         </form>
       </div>
