@@ -1,8 +1,3 @@
-Here’s an **improved version** of your README with all the instructions you’ve added, plus installation of **Framer Motion**, **Lucide React**, and **Solana Wallet Adapter** since your FYP requires Phantom wallet integration:
-
----
-
-````markdown
 # Secure Business Investment Platform on Solana
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
