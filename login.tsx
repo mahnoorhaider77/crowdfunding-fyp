@@ -34,42 +34,45 @@ export default function LoginPage() {
     }
 
     localStorage.setItem('userEmail', email);
-    router.push('/dashboard');
+    router.push('/investor-dashboard');
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-blue-100 p-4 relative">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0B0F2D] to-[#1A1F4A] p-4 relative">
       {/* 🔄 Loading Overlay */}
       {isLoading && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <div className="border-t-4 border-purple-500 border-solid rounded-full w-8 h-8 animate-spin mx-auto mb-3" />
-            <p className="text-sm text-gray-700">Logging in, please wait...</p>
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center backdrop-blur-sm">
+          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10 text-center">
+            <div className="border-t-4 border-purple-500 rounded-full w-10 h-10 animate-spin mx-auto mb-3" />
+            <p className="text-sm text-gray-200">Logging in, please wait...</p>
           </div>
         </div>
       )}
 
-      <div className="bg-white bg-opacity-60 backdrop-blur-md rounded-2xl shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
-        <p className="text-center text-gray-600 mb-6">Use your email and password to sign in</p>
+      {/* Login Card */}
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl p-8">
+        <h2 className="text-3xl font-bold text-center text-white mb-4">Welcome Back</h2>
+        <p className="text-center text-gray-400 mb-6">Login to your account</p>
 
         {/* Email Input */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label className="block text-sm font-medium text-gray-300 mb-1">Email</label>
           <input
             type="email"
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400"
+            placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
         {/* Password Input */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-300 mb-1">Password</label>
           <input
             type="password"
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400"
+            placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -78,22 +81,17 @@ export default function LoginPage() {
         {/* Login Button */}
         <button
           onClick={handleLogin}
-          className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold shadow-md hover:opacity-90 transition duration-300"
+          className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold shadow-lg hover:opacity-90 transition duration-300"
         >
           Login with Email
         </button>
 
-        {/* Description */}
-        <p className="text-sm text-center text-gray-500 mt-4">
-          Use a valid email and password to sign in
-        </p>
-
         {/* Sign Up Redirect */}
-        <p className="text-sm text-center text-gray-600 mt-4">
+        <p className="text-sm text-center text-gray-400 mt-4">
           Don’t have an account?{' '}
           <span
             onClick={() => router.push('/signup')}
-            className="text-purple-600 cursor-pointer hover:underline font-medium"
+            className="text-purple-400 cursor-pointer hover:underline font-medium"
           >
             Sign up
           </span>
