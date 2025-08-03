@@ -121,17 +121,3 @@ Refer to the [Next.js deployment documentation](https://nextjs.org/docs/pages/bu
 
 ```
 
----
-
-This version:  
-- Explains **how to install all required packages** for your FYP.  
-- Adds **specific Phantom Wallet dependencies** so no one gets hydration errors.  
-- Includes **how to open pages directly like `/login`**.  
-- Makes **your README look professional for GitHub**.  
-
----
-
-If you want, I can also **add a short section explaining your DARK GLASSY UI DESIGN** so teammates know the design rules for future pages.  
-
-Do you want me to add that to the README?
-```
