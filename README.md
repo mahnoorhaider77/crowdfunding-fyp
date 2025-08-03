@@ -66,8 +66,8 @@ or replace `login` with any page name.
 
 Your folder structure should look like this:
 
-![Project Folder Structure 1]<img width="225" height="669" alt="image" src="https://github.com/user-attachments/assets/9b553d4f-b842-40ca-a7a8-70c2a2706b0d" />
-![Project Folder Structure 2]<img width="224" height="641" alt="image" src="https://github.com/user-attachments/assets/fff6df82-1941-46ad-999e-23e6632bd8db" />
+<img width="225" height="669" alt="image" src="https://github.com/user-attachments/assets/9b553d4f-b842-40ca-a7a8-70c2a2706b0d" />
+<img width="224" height="641" alt="image" src="https://github.com/user-attachments/assets/fff6df82-1941-46ad-999e-23e6632bd8db" />
 
 
 * `pages/` → Contains all the routes (e.g., `login.tsx`, `kyc.tsx`, `dashboard.tsx`)
